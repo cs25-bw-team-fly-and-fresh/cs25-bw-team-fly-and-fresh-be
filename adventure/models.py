@@ -25,7 +25,7 @@ class Room(models.Model):
         reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
         reverse_dir = reverse_dirs[direction]
         setattr(self, f"{direction}_to", destinationRoom)
-        setattr(destinationRoom, f"{reverse_dir}_to", self)
+        setattr(destinationRoom, f"{reverse_dir}_to", self.id)
         self.save()
 
     def playerNames(self, currentPlayerID):

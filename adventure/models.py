@@ -24,8 +24,8 @@ class Room(models.Model):
         '''
         reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
         reverse_dir = reverse_dirs[direction]
-        setattr(self, f"{direction}_to", connecting_room)
-        setattr(connecting_room, f"{reverse_dir}_to", self)
+        setattr(self, f"{direction}_to", destinationRoom)
+        setattr(destinationRoom, f"{reverse_dir}_to", self)
         self.save()
 
     def playerNames(self, currentPlayerID):
@@ -46,6 +46,8 @@ class Player(models.Model):
     def initialize(self):
         if self.currentRoom == 0:
             self.currentRoom = Room.objects.first().id
+            self.x = Room.objects.first().x
+            self.y = Room.objects.first().y
             self.save()
 
     def room(self):

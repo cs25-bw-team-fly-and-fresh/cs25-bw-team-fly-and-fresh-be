@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
-import the Room class within the shell (once ready)
+#from django.contrib.auth.models import User
+#import the Room class within the shell (once ready)
 from adventure.models import Player, Room
-from adventure.models import Player, Room
-import random
-from util.room_descriptions import room_name, room_description
-from util.create_the_world import World
+#from adventure.models import Player, Room
+#import random
+#from util.room_descriptions import room_name, room_description
+#from util.create_the_world import World
 
 class World:
     def __init__(self):
@@ -124,12 +124,12 @@ class World:
 ​
 ​
 ​
-w = World()
-num_rooms = 100
-width = 10
-height = 10
-w.generate_rooms(width, height, num_rooms)
-w.print_rooms()
+#w = World()
+#num_rooms = 100
+#width = 10
+#height = 10
+#w.generate_rooms(width, height, num_rooms)
+#w.print_rooms()
 ​
 ​
 ​

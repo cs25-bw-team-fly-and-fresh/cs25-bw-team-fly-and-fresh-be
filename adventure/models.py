@@ -10,6 +10,9 @@ class Room(models.Model):
     title = models.CharField(max_length=50, default="DEFAULT TITLE")
     description = models.CharField(
         max_length=500, default="DEFAULT DESCRIPTION")
+    # X,Y Fields for room location in grid
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
     n_to = models.IntegerField(default=0)
     s_to = models.IntegerField(default=0)
     e_to = models.IntegerField(default=0)
@@ -46,6 +49,9 @@ class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     currentRoom = models.IntegerField(default=0)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    # X,Y Fields for player location
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
 
     def initialize(self):
         if self.currentRoom == 0:

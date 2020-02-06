@@ -24,7 +24,7 @@ class Room(models.Model):
         '''
         reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
         reverse_dir = reverse_dirs[direction]
-        setattr(self, f"{direction}_to", destinationRoom)
+        setattr(self, f"{direction}_to", destinationRoom.id)
         setattr(destinationRoom, f"{reverse_dir}_to", self.id)
         self.save()
 

@@ -1,3 +1,4 @@
+  
 .DS_Store
 .env
 
@@ -13,3 +14,4 @@ local_settings.py
 db.sqlite3
 
 tmp
+.vscode/

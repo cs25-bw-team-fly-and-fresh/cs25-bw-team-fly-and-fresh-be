@@ -1,0 +1,12 @@
+import pusher
+
+pusher_client = pusher.Pusher(
+app_id = '9431187', 
+key = '2273fb3cc01f3b', 
+secret = 'f756e3691b62f42aaa6f', 
+cluster = 'us2', 
+ssl = True
+)
+
+
+pusher_client.trigger('my-channel', )

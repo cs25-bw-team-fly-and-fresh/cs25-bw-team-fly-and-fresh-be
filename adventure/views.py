@@ -1,8 +1,8 @@
-from rest_framework import viewsets
+from rest_framework import generics
 from .serializers import RoomSerializer
 from .models import Room
 
 
-class RoomViewSet(viewsets.ModelViewSet):
-    queryset = Room.objects.all().order_by('id')
+class RoomViewSet(generics.ListAPIView):
+    queryset = Room.objects.all()
     serializer_class = RoomSerializer

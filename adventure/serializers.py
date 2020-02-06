@@ -5,5 +5,5 @@ from .models import Room
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Room
-        fields = {'title', 'description', 'x',
-                  'y', 'n_to', 's_to', 'e_to', 'w_to'}
+        fields = ('title', 'description', 'x',
+                  'y', 'n_to', 's_to', 'e_to', 'w_to')

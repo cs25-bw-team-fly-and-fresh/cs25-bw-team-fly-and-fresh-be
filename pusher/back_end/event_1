@@ -9,4 +9,4 @@ ssl = True
 )
 
 
-pusher_client.trigger('my-channel', )
+pusher_client.trigger('my-channel', 'my-event', {'message': 'Hello World!'}) 

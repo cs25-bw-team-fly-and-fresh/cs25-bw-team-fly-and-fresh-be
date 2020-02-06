@@ -1,5 +1,7 @@
 # Import Player/Room models to utilize methods and save into DB
 from adventure.models import Player, Room
+from util.room_name_descriptions import room_title, room_descriptions
+# from util.cs25_world_creator import World
 
 
 class World:
@@ -24,6 +26,7 @@ class World:
         x = -1  # (this will become 0 on the first step)
         y = 0
         room_count = 0
+        room_title_description = 0
 
         # Start generating rooms to the east
         direction = 1  # 1: east, -1: west
@@ -46,8 +49,8 @@ class World:
                 direction *= -1
 
             # Create a room in the given direction
-            room = Room(room_count, "A Generic Room",
-                        "This is a generic room.", x, y)
+            room = Room(room_count, room_title[room_title_description],
+                        room_descriptions[room_title_description], x, y)
             # Note that in Django, you'll need to save the room after you create it
 
             # Save the room in the World grid
@@ -60,60 +63,61 @@ class World:
             # Update iteration variables
             previous_room = room
             room_count += 1
+            room_title_description += 1
 
-    def print_rooms(self):
-        '''
-        Print the rooms in room_grid in ascii characters.
-        '''
+    # def print_rooms(self):
+    #     '''
+    #     Print the rooms in room_grid in ascii characters.
+    #     '''
 
-        # Add top border
-        str = "# " * ((3 + self.width * 5) // 2) + "\n"
+    #     # Add top border
+    #     str = "# " * ((3 + self.width * 5) // 2) + "\n"
 
-        # The console prints top to bottom but our array is arranged
-        # bottom to top.
-        #
-        # We reverse it so it draws in the right direction.
-        reverse_grid = list(self.grid)  # make a copy of the list
-        reverse_grid.reverse()
-        for row in reverse_grid:
-            # PRINT NORTH CONNECTION ROW
-            str += "#"
-            for room in row:
-                if room is not None and room.n_to is not None:
-                    str += "  |  "
-                else:
-                    str += "     "
-            str += "#\n"
-            # PRINT ROOM ROW
-            str += "#"
-            for room in row:
-                if room is not None and room.w_to is != 0:
-                    str += "-"
-                else:
-                    str += " "
-                if room is not None:
-                    str += f"{room.id}".zfill(3)
-                else:
-                    str += "   "
-                if room is not None and room.e_to is != 0:
-                    str += "-"
-                else:
-                    str += " "
-            str += "#\n"
-            # PRINT SOUTH CONNECTION ROW
-            str += "#"
-            for room in row:
-                if room is not None and room.s_to is != 0:
-                    str += "  |  "
-                else:
-                    str += "     "
-            str += "#\n"
+    #     # The console prints top to bottom but our array is arranged
+    #     # bottom to top.
+    #     #
+    #     # We reverse it so it draws in the right direction.
+    #     reverse_grid = list(self.grid)  # make a copy of the list
+    #     reverse_grid.reverse()
+    #     for row in reverse_grid:
+    #         # PRINT NORTH CONNECTION ROW
+    #         str += "#"
+    #         for room in row:
+    #             if room is not None and room.n_to != 0:
+    #                 str += "  |  "
+    #             else:
+    #                 str += "     "
+    #         str += "#\n"
+    #         # PRINT ROOM ROW
+    #         str += "#"
+    #         for room in row:
+    #             if room is not None and room.w_to != 0:
+    #                 str += "-"
+    #             else:
+    #                 str += " "
+    #             if room is not None:
+    #                 str += f"{room.id}".zfill(3)
+    #             else:
+    #                 str += "   "
+    #             if room is not None and room.e_to != 0:
+    #                 str += "-"
+    #             else:
+    #                 str += " "
+    #         str += "#\n"
+    #         # PRINT SOUTH CONNECTION ROW
+    #         str += "#"
+    #         for room in row:
+    #             if room is not None and room.s_to != 0:
+    #                 str += "  |  "
+    #             else:
+    #                 str += "     "
+    #         str += "#\n"
 
-        # Add bottom border
-        str += "# " * ((3 + self.width * 5) // 2) + "\n"
+    #     # Add bottom border
+    #     str += "# " * ((3 + self.width * 5) // 2) + "\n"
 
-        # Print string
-        print(str)
+    #     # Print string
+    #     print(str)
 
 
 # w = World()
